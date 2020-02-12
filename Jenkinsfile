@@ -14,7 +14,7 @@ pipeline {
 
     stage('docker build') {
       steps {
-        sh 'docker build -t node-app:${env.BUILD_ID} .'
+        sh 'docker build -t node-app:"${env.BUILD_ID}" .'
       }
     }
 
