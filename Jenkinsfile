@@ -13,8 +13,11 @@ pipeline {
     }
 
     stage('docker build') {
+      environment {
+        BUILD_ID = ''
+      }
       steps {
-        sh '"docker build -t node-app:${env.BUILD_ID} ."'
+        sh 'docker build -t node-app:${env.BUILD_ID} .'
       }
     }
 
