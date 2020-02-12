@@ -13,18 +13,27 @@ pipeline {
     }
 
     stage('docker build') {
-     
-      steps {
-        sh "docker build -t node-app:${env.BUILD_ID} ."
+      parallel {
+        stage('docker build') {
+          steps {
+            sh "docker build -t node-app:${env.BUILD_ID} ."
+          }
+        }
+
+        stage('test') {
+          steps {
+            sh 'npm test'
+          }
+        }
+
       }
     }
-     stage('docker publish') {
-     
+
+    stage('docker publish') {
       steps {
-       
         sh "docker tag node-app:${env.BUILD_ID} lidorlg/node-app:${env.BUILD_ID} && docker push lidorlg/node-app:${env.BUILD_ID}"
-        
-        }
+      }
     }
+
   }
 }
