@@ -36,8 +36,19 @@ pipeline {
     }
 
     stage('chuck norris') {
-      steps {
-        chuckNorris()
+      parallel {
+        stage('chuck norris') {
+          steps {
+            chuckNorris()
+          }
+        }
+
+        stage('notify slack ') {
+          steps {
+            slackSend(message: 'build succededs', color: '#BDFFC3', channel: '#sarabenshabbat_jenkins')
+          }
+        }
+
       }
     }
 
