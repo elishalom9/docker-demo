@@ -21,9 +21,9 @@ pipeline {
      stage('docker publish') {
      
       steps {
-        withDockerRegistry(credentialsId: 'docker-hub') {
+       
         sh "docker tag node-app:${env.BUILD_ID} lidorlg/node-app:${env.BUILD_ID} && docker push lidorlg/node-app:${env.BUILD_ID}"
-        }
+        
         }
     }
   }
