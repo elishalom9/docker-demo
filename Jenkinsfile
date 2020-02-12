@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('checkout code') {
       steps {
+        cleanWs()
         git(url: 'https://github.com/lidorg-dev/docker-demo.git', branch: 'master', poll: true, credentialsId: 'git-creds')
       }
     }
