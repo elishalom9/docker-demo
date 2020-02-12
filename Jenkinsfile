@@ -35,5 +35,11 @@ pipeline {
       }
     }
 
+    stage('chuck norris') {
+      steps {
+        chuckNorris()
+      }
+    }
+
   }
 }
